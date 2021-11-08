@@ -1,11 +1,9 @@
 import { IconButton } from '@chakra-ui/button';
 import { Divider, Flex, Grid, Spacer } from '@chakra-ui/layout';
-import { Select } from '@chakra-ui/select';
-import { SearchIcon } from '@chakra-ui/icons';
-import { Link } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { CheckIcon, SearchIcon } from '@chakra-ui/icons';
+import { Checkbox, Select, List, ListItem } from '@chakra-ui/react';
 import Head from 'next/head';
-import Title from '../common/components/Title';
+import { Title, IconButtonLink, Text } from '../common/components';
 
 export default function Home() {
   return (
@@ -15,19 +13,51 @@ export default function Home() {
       </Head>
       <Grid>
         <Select></Select>
-
         <Flex>
           <Title as="h2">Lista de Compras</Title>
           <Spacer />
           <IconButton aria-label="Filter glocery items" icon={<SearchIcon />} />
         </Flex>
 
-        <Divider />
-        <NextLink href="grocery" passHref>
-          <Link>Link</Link>
-        </NextLink>
+        <List as="ol" spacing="4">
+          <ListItem>
+            <Flex>
+              <Checkbox defaultIsChecked>
+                <Text truncated>a</Text>
+              </Checkbox>
+              <Spacer />
+              <Text truncated bold>
+                a
+              </Text>
+            </Flex>
+          </ListItem>
+          <ListItem>
+            <Flex>
+              <Checkbox defaultIsChecked>
+                <Text truncated>a</Text>
+              </Checkbox>
+              <Spacer />
+              <Text truncated bold>
+                a
+              </Text>
+            </Flex>
+          </ListItem>
+        </List>
 
+        <Divider />
+        <Grid>
+          <Title as="h2">Opções</Title>
+          <Flex>
+            <IconButtonLink href="/grocery" arial-label="todo">
+              <CheckIcon />
+            </IconButtonLink>
+            <Spacer />
+            <IconButtonLink href="/grocery" arial-label="todo">
+              <CheckIcon />
+            </IconButtonLink>
+          </Flex>
+        </Grid>
       </Grid>
     </>
-  )
+  );
 }
