@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": "./src",
     "paths": {
-      "~/components/*": ["common/components"],
+      "~/components": ["common/components"],
       "~/constants": ["common/constants"],
       "~/context/*": ["common/context/*"],
       "~/hooks": ["common/hooks"],
