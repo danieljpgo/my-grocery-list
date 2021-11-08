@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isBrowser } from '~/lib/browser';
 
 export function useLocalStorageReducer<Data extends React.Reducer<any, any>>(
   key: string,
@@ -7,10 +8,9 @@ export function useLocalStorageReducer<Data extends React.Reducer<any, any>>(
   { serialize = JSON.stringify, deserialize = JSON.parse } = {},
 ) {
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
-    const init =
-      typeof initialState === 'function' ? initialState() : initialState;
+    const init = typeof initialState === 'function' ? initialState() : initialState;
     try {
-      const valueInLocalStorage = window.localStorage.getItem(key);
+      const valueInLocalStorage = isBrowser() && window.localStorage.getItem(key);
       return valueInLocalStorage ? deserialize(valueInLocalStorage) : init;
     } catch (error) {
       return init;
@@ -22,10 +22,10 @@ export function useLocalStorageReducer<Data extends React.Reducer<any, any>>(
   React.useEffect(() => {
     const prevKey = prevKeyRef.current;
     if (prevKey !== key) {
-      window.localStorage.removeItem(prevKey);
+      isBrowser() && window.localStorage.removeItem(prevKey);
     }
     prevKeyRef.current = key;
-    window.localStorage.setItem(key, serialize(state));
+    isBrowser() && window.localStorage.setItem(key, serialize(state));
   }, [key, state, serialize]);
 
   return [state, dispatch] as const;
