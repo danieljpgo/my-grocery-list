@@ -6,17 +6,13 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* @TODO Voltar aqui e melhorar a experiencia do pwa */}
-          {/* <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          /> */}
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+          <meta name="theme-color" content="#fff" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon.png" />
           <link rel="shortcut icon" href="/favicon.ico" />
-          <meta name="theme-color" content="#fff" />
         </Head>
-        <body>
+        <body style={{ WebkitTapHighlightColor: "transparent" }}>
           <Main />
           <NextScript />
         </body>
