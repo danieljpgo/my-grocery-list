@@ -3,7 +3,7 @@ import { Divider, Flex, Grid, Spacer } from '@chakra-ui/layout';
 import { CheckIcon, SearchIcon } from '@chakra-ui/icons';
 import { Checkbox, Select, List, ListItem } from '@chakra-ui/react';
 import Head from 'next/head';
-import { Title, IconButtonLink, Text } from '../common/components';
+import { Title, IconButtonLink, Text } from '~/components/';
 
 export default function Home() {
   return (
