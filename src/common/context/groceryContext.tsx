@@ -30,7 +30,7 @@ type GroceryActions =
   | { type: 'CREATE_GROCERY'; payload: Omit<Grocery, 'id'> }
   | { type: 'EDIT_GROCERY'; payload: Partial<Grocery> }
   | { type: 'DELETE_GROCERY'; payload: Pick<Grocery, 'id'> }
-  | { type: 'CREATE_ITEM'; payload: { grocery: Pick<Grocery, 'id'>; item: Exclude<Item, 'id'> } }
+  | { type: 'CREATE_ITEM'; payload: { grocery: Pick<Grocery, 'id'>; item: Omit<Item, 'id'> } }
   | { type: 'EDIT_ITEM'; payload: { grocery: Pick<Grocery, 'id'>; item: Partial<Item> } }
   | { type: 'DELETE_ITEM'; payload: { grocery: Pick<Grocery, 'id'>; item: Pick<Item, 'id'> } };
 
@@ -112,7 +112,7 @@ export function GroceryProvider({ children }: GroceryProviderProps) {
 function useGroceryContext() {
   const context = React.useContext(GroceryContext);
   if (context === undefined) {
-    throw new Error('useGrocery must be used within a GroceryProvider');
+    throw new Error('useGroceryContext must be used within a GroceryProvider');
   }
   return context;
 }
@@ -141,7 +141,7 @@ type GroceryItemsActions = Exclude<
   GroceryActions,
   { type: 'CREATE_GROCERY' } | { type: 'EDIT_GROCERY' } | { type: 'DELETE_GROCERY' }
 >;
-export function useGroceryItemsActions() {
+export function useGroceryItems() {
   const [groceries, dispatch] = useGroceryContext();
 
   const groceryItemsActions = React.useCallback(

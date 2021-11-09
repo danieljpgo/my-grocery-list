@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Container as ContainerChakra, Box } from '@chakra-ui/react';
+import { Container as ContainerChakra } from '@chakra-ui/react';
 
 type ContainerProps = {
   children: React.ReactNode;
-}
+};
 
 export default function Container({ children }: ContainerProps) {
   return (
@@ -11,5 +11,5 @@ export default function Container({ children }: ContainerProps) {
       {children}
       {/* centerContent @TODO */}
     </ContainerChakra>
-  )
+  );
 }

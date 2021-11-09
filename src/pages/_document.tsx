@@ -6,10 +6,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* @TODO Voltar aqui e melhorar a experiencia do pwa */}
-          <meta
-            name="apple-mobile-web-app-status-bar-style"
-            content="black-translucent"
-          />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="theme-color" content="#fff" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon.png" />
