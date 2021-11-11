@@ -6,5 +6,9 @@ type TitleProps = {
 };
 
 export default function Title({ children, as }: TitleProps) {
-  return <Heading as={as}>{children}</Heading>;
+  return (
+    <Heading size={as === 'h1' ? 'lg' : 'md'} as={as}>
+      {children}
+    </Heading>
+  );
 }

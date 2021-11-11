@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/dist/client/router';
 import { Title } from '~/components';
 import { Select, Input, Textarea, Button } from '@chakra-ui/react';
-import { Flex, Grid, Spacer } from '@chakra-ui/layout';
+import { Grid } from '@chakra-ui/layout';
 import { useGroceries } from '~/context/groceryContext';
 import Header from 'common/components/Header';
 
@@ -49,30 +49,34 @@ export default function CreateGrocery() {
       <Head>
         <title>Estabelecimento</title>
       </Head>
-      <Header></Header>
-      <Grid>
-        <form onSubmit={handleSubmit}>
+      <Header>{`Estabelecimento - ${router.query.name ?? '...'}`}</Header>
+      <form onSubmit={handleSubmit}>
+        <Grid gap="6" pt="6">
           <Title as="h2">Lista de Compras</Title>
           <Input
             name="name"
-            placeholder="Basic usage"
+            placeholder="Nome"
             onChange={handleInputChange}
             value={router.query.name}
           />
-          <Select name="category" value="Supermercado" onChange={console.log}>
+          <Select
+            name="category"
+            placeholder="Categoria"
+            value="Supermercado"
+            onChange={console.log}
+          >
             <option value="Supermercado">Supermercado</option>
           </Select>
           <Title as="h2">Estabelecimento</Title>
-          <Input name="street" placeholder="Basic usage" />
-          <Flex>
-            <Input name="number" placeholder="Basic usage" />
-            <Spacer />
-            <Input name="neighborhood" placeholder="Basic usage" />
-          </Flex>
-          <Textarea name="observations" placeholder="Here is a sample placeholder" />
+          <Input name="street" placeholder="Bairro" />
+          <Grid gap="6" style={{ gridTemplateColumns: '1fr 1fr' }}>
+            <Input type="number" name="number" placeholder="Número" />
+            <Input name="neighborhood" placeholder="Bairro" />
+          </Grid>
+          <Textarea name="observations" placeholder="Observações" />
           <Button type="submit">Cadastrar</Button>
-        </form>
-      </Grid>
+        </Grid>
+      </form>
     </>
   );
 }

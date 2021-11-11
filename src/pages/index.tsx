@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { CheckIcon, SearchIcon } from '@chakra-ui/icons';
+import { PlusSquareIcon, SearchIcon } from '@chakra-ui/icons';
 import { Divider, Flex, Grid, Spacer } from '@chakra-ui/layout';
 import { Checkbox, Select, List, ListItem, IconButton } from '@chakra-ui/react';
 import { useGrocery, useGroceries } from '~/context/groceryContext';
@@ -24,7 +24,7 @@ export default function Home() {
       <Head>
         <title>{`Página Inicial${grocery ? ` - ${grocery.name}` : ''}`}</title>
       </Head>
-      <Grid>
+      <Grid gap="6">
         <Select name="selectgrocery" value={selectGrocery} onChange={handleSelectGrocery}>
           {groceries.map(({ name, id }) => (
             <option key={id} value={id}>
@@ -37,7 +37,7 @@ export default function Home() {
           <Spacer />
           <IconButton disabled aria-label="Filter glocery items" icon={<SearchIcon />} />
         </Flex>
-        <div>
+        <Grid style={{ gridTemplateRows: '1fr 1fr' }}>
           {grocery ? (
             <List as="ul" spacing="4">
               {grocery.items.length ? (
@@ -58,25 +58,19 @@ export default function Home() {
                   </ListItem>
                 ))
               ) : (
-                <Text>Nenhum item encontrado</Text>
+                <ListItem textAlign="center">Nenhum item encontrado</ListItem>
               )}
             </List>
           ) : (
             <Text>Selecione ou crie uma Grocery</Text>
           )}
-        </div>
-        <Divider />
-        <Grid>
-          <Title as="h2">Opções</Title>
-          <Flex>
-            <IconButtonLink href="/grocery" arial-label="todo">
-              <CheckIcon />
+          <Grid gap="6">
+            <Divider />
+            <Title as="h2">Opções</Title>
+            <IconButtonLink size="xl" href="/grocery" arial-label="todo">
+              <PlusSquareIcon />
             </IconButtonLink>
-            <Spacer />
-            <IconButtonLink href="/grocery" arial-label="todo">
-              <CheckIcon />
-            </IconButtonLink>
-          </Flex>
+          </Grid>
         </Grid>
       </Grid>
     </>

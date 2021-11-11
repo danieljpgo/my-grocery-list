@@ -7,9 +7,27 @@ type ContainerProps = {
 
 export default function Container({ children }: ContainerProps) {
   return (
-    <ContainerChakra as="main">
-      {children}
-      {/* centerContent @TODO */}
-    </ContainerChakra>
+    <div
+      style={{
+        display: 'grid',
+        placeItems: 'center',
+        height: '100vh',
+      }}
+    >
+      <ContainerChakra
+        rounded="2xl"
+        px="8"
+        py="10"
+        boxShadow="lg"
+        as="main"
+        style={{
+          height: '100%',
+          width: '100%',
+          maxWidth: '480px',
+        }}
+      >
+        {children}
+      </ContainerChakra>
+    </div>
   );
 }

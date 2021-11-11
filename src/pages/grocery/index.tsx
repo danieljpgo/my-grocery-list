@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/dist/client/router';
-import { SearchIcon } from '@chakra-ui/icons';
+import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Input, List, ListItem } from '@chakra-ui/react';
-import { Divider, Flex, Grid, Spacer } from '@chakra-ui/layout';
+import { Divider, Grid, Spacer } from '@chakra-ui/layout';
 import { Title, IconButtonLink, Text } from '~/components';
 import { useGroceries } from '~/context/groceryContext';
 import Header from 'common/components/Header';
@@ -21,24 +21,23 @@ export default function Grocery() {
       <Head>
         <title>Estabelecimento</title>
       </Head>
-      <Header></Header>
-      <Grid>
+      <Header>Estabelecimento</Header>
+      <Grid gap="6" pt="6">
         <Title as="h2">Cadastrar</Title>
-        <Flex>
+        <Grid gap="6" style={{ gridTemplateColumns: 'auto auto' }}>
           <Input
             value={router.query.name}
             name="name"
             placeholder="Basic usage"
             onChange={handleInputChange}
           />
-          <Spacer />
           <IconButtonLink
             arial-label="Filter glocery items"
             href={{ pathname: '/grocery/create', query: router.query }}
           >
-            <SearchIcon />
+            <PlusSquareIcon />
           </IconButtonLink>
-        </Flex>
+        </Grid>
         <Title as="h2">Cadastrados</Title>
         <List as="ul" spacing="4">
           {groceries.map((grocery) => (
