@@ -28,7 +28,7 @@ export default function Grocery() {
           <Input
             value={router.query.name}
             name="name"
-            placeholder="Basic usage"
+            placeholder="Nome"
             onChange={handleInputChange}
           />
           <IconButtonLink

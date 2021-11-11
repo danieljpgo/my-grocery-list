@@ -31,6 +31,7 @@ export default function Home() {
               {name}
             </option>
           ))}
+          {!grocery && <option value="">Selecione ou crie uma Grocery</option>}
         </Select>
         <Flex>
           <Title as="h2">Lista de Compras</Title>
