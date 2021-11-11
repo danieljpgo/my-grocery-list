@@ -10,7 +10,7 @@ export function useLocalStorageReducer<Data extends React.Reducer<any, any>>(
   const [state, dispatch] = React.useReducer(reducer, initialState, () => {
     const init = typeof initialState === 'function' ? initialState() : initialState;
     try {
-      const valueInLocalStorage = isBrowser() && window.localStorage.getItem(key);
+      const valueInLocalStorage = isBrowser() && localStorage.getItem(key);
       return valueInLocalStorage ? deserialize(valueInLocalStorage) : init;
     } catch (error) {
       return init;
@@ -22,10 +22,10 @@ export function useLocalStorageReducer<Data extends React.Reducer<any, any>>(
   React.useEffect(() => {
     const prevKey = prevKeyRef.current;
     if (prevKey !== key) {
-      isBrowser() && window.localStorage.removeItem(prevKey);
+      isBrowser() && localStorage.removeItem(prevKey);
     }
     prevKeyRef.current = key;
-    isBrowser() && window.localStorage.setItem(key, serialize(state));
+    isBrowser() && localStorage.setItem(key, serialize(state));
   }, [key, state, serialize]);
 
   return [state, dispatch] as const;
