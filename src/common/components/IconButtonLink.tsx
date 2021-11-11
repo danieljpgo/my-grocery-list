@@ -1,9 +1,10 @@
-import { IconButton } from '@chakra-ui/button';
-import NextLink from 'next/link';
 import * as React from 'react';
+import NextLink from 'next/link';
+import { UrlObject } from 'url';
+import { IconButton } from '@chakra-ui/button';
 
 type IconButtonLinkProps = {
-  href: string;
+  href: string | UrlObject;
   children: React.ReactElement;
   'arial-label': string;
 };

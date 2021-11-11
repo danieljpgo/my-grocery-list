@@ -117,7 +117,7 @@ function useGroceryContext() {
   return context;
 }
 
-export function useGrocery(id: string) {
+export function useGrocery(id: Grocery['id']) {
   const [groceries] = useGroceryContext();
   return groceries.find((grocery) => grocery.id === id);
 }
