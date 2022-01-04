@@ -1,4 +1,9 @@
 export { default as Container } from './Container';
+export { default as Header } from './Header';
 export { default as Title } from './Title';
 export { default as Text } from './Text';
 export { default as IconButtonLink } from './IconButtonLink';
+export { default as Stack } from './Stack';
+export { default as Shelf } from './Shelf';
+export { default as Spacer } from './Spacer';
+export { default as Divider } from './Divider';

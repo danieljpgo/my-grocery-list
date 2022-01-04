@@ -12,6 +12,7 @@ export default function Container({ children }: ContainerProps) {
         display: 'grid',
         placeItems: 'center',
         height: '100vh',
+        backgroundColor: '#f1f1f1',
       }}
     >
       <ContainerChakra
@@ -24,6 +25,8 @@ export default function Container({ children }: ContainerProps) {
           height: '100%',
           width: '100%',
           maxWidth: '480px',
+          maxHeight: '720px',
+          backgroundColor: 'white',
         }}
       >
         {children}
