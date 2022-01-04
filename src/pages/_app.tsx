@@ -3,8 +3,9 @@ import Head from 'next/head';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Container } from '../common/components';
 import { GroceryProvider } from '~/context/groceryContext';
+import dynamic from 'next/dynamic';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -29,3 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(MyApp), {
+  ssr: false,
+});
