@@ -14,13 +14,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "~/components": ["common/components"],
-      "~/constants": ["common/constants"],
-      "~/context/*": ["common/context/*"],
-      "~/hooks": ["common/hooks"],
-      "~/types/*": ["common/types/*"],
+      "~/components": ["src/common/components"],
+      "~/constants": ["src/common/constants"],
+      "~/context/*": ["src/common/context/*"],
+      "~/hooks": ["src/common/hooks"],
+      "~/types/*": ["src/common/types/*"],
       "~/lib/*": ["lib/*"]
     }
   },
