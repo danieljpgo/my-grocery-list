@@ -1,30 +1,7 @@
 import * as React from 'react';
 import { useLocalStorageReducer } from '~/hooks';
-import { generateId } from '~/lib/generateData';
-
-type Category = 'Supermercado';
-
-type Address = {
-  street: string;
-  number: number;
-  neighborhood: string;
-};
-
-type Item = {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-};
-
-export type Grocery = {
-  id: string;
-  name: string;
-  items: Item[];
-  address: Address;
-  category: Category;
-  observations: string;
-};
+import { generateId } from '~/lib/data';
+import type { Grocery, Item } from '~/lib/grocery';
 
 type GroceryActions =
   | { type: 'CREATE_GROCERY'; payload: Omit<Grocery, 'id'> }
@@ -101,11 +78,7 @@ type GroceryProviderProps = {
   children: React.ReactNode;
 };
 export function GroceryProvider({ children }: GroceryProviderProps) {
-  const [state, dispatch] = useLocalStorageReducer(
-    'my-grocery-list@groceries',
-    groceryReducer,
-    initialState,
-  );
+  const [state, dispatch] = useLocalStorageReducer('@groceries', groceryReducer, initialState);
   return <GroceryContext.Provider value={[state, dispatch]}>{children}</GroceryContext.Provider>;
 }
 
@@ -122,9 +95,9 @@ export function useGrocery(id: Grocery['id']) {
   return groceries.find((grocery) => grocery.id === id);
 }
 
-type GroceriesActions = Exclude<
+type GroceriesActions = Extract<
   GroceryActions,
-  { type: 'CREATE_ITEM' } | { type: 'EDIT_ITEM' } | { type: 'DELETE_ITEM' }
+  { type: 'CREATE_GROCERY' } | { type: 'EDIT_GROCERY' } | { type: 'DELETE_ITEM' }
 >;
 export function useGroceries() {
   const [groceries, dispatch] = useGroceryContext();
@@ -139,7 +112,7 @@ export function useGroceries() {
 
 type GroceryItemsActions = Exclude<
   GroceryActions,
-  { type: 'CREATE_GROCERY' } | { type: 'EDIT_GROCERY' } | { type: 'DELETE_GROCERY' }
+  { type: 'CREATE_ITEM' } | { type: 'EDIT_ITEM' } | { type: 'DELETE_GROCERY' }
 >;
 export function useGroceryItems() {
   const [groceries, dispatch] = useGroceryContext();

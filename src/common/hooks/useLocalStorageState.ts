@@ -20,11 +20,13 @@ export const useLocalStorageState = <T>(
 
   React.useEffect(() => {
     const prevKey = prevKeyRef.current;
-    if (prevKey !== key) {
-      isBrowser() && localStorage.removeItem(prevKey);
+    if (prevKey !== key && isBrowser()) {
+      localStorage.removeItem(prevKey);
     }
     prevKeyRef.current = key;
-    isBrowser() && localStorage.setItem(key, serialize(state));
+    if (isBrowser()) {
+      localStorage.setItem(key, serialize(state));
+    }
   }, [key, state, serialize]);
 
   return [state, setState];

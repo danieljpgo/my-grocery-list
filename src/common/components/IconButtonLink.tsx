@@ -3,25 +3,30 @@ import NextLink from 'next/link';
 import { UrlObject } from 'url';
 import { IconButton } from '@chakra-ui/button';
 
+const sizes = {
+  sm: 10,
+  md: 20,
+  lg: 30,
+} as const;
+
 type IconButtonLinkProps = {
   href: string | UrlObject;
-  size?: 'sm' | 'xl';
-  disabled?: boolean;
   children: React.ReactElement;
   'arial-label': string;
+  size?: keyof typeof sizes;
+  disabled?: boolean;
+  fullWidth?: boolean;
 };
 
 export default function IconButtonLink(props: IconButtonLinkProps) {
-  const { disabled, href, children, 'arial-label': arialLabel, size = 'sm' } = props;
-
-  const sizeValue = size === 'xl' ? '36' : undefined;
+  const { disabled, href, children, 'arial-label': arialLabel, size = 'sm', fullWidth } = props;
 
   return (
     <NextLink href={href} passHref>
       <IconButton
         disabled={disabled}
-        h={sizeValue}
-        w={sizeValue}
+        h={sizes[size]}
+        w={fullWidth ? '100%' : sizes[size]}
         as="a"
         icon={children}
         aria-label={arialLabel}
